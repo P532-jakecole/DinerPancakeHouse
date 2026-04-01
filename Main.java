@@ -3,15 +3,26 @@ public class Main {
 
         ObjectvilleDiner diner = new ObjectvilleDiner();
         ObjectvillePancakeHouse pancakeHouse = new ObjectvillePancakeHouse();
-
-        System.out.println("--- Combined MENU ---");
+        int length = pancakeHouse.getMenuItems().size() + diner.getMenuItems().length;
+        MenuItem[] combinedMenu = new MenuItem[length];
+        DinerMenuIterator menu = new DinerMenuIterator(combinedMenu);
+        int index = 0;
+        
         for (MenuItem item : pancakeHouse.getMenuItems()) {
-            printItem(item);
+            combinedMenu[index] = item;
+            index++;
         }
         for (MenuItem item : diner.getMenuItems()) {
             if (item != null) {
-                printItem(item);
+                combinedMenu[index] = item;
+                index++;
             }
+        }
+
+        System.out.println("--- Combined MENU ---");
+        while(menu.hasNext()){
+            MenuItem item = (MenuItem) menu.next();
+            printItem(item);
         }
     }
 

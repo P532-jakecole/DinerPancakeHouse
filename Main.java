@@ -4,16 +4,14 @@ public class Main {
         ObjectvilleDiner diner = new ObjectvilleDiner();
         ObjectvillePancakeHouse pancakeHouse = new ObjectvillePancakeHouse();
 
-        System.out.println("--- DINER MENU ---");
+        System.out.println("--- Combined MENU ---");
+        for (MenuItem item : pancakeHouse.getMenuItems()) {
+            printItem(item);
+        }
         for (MenuItem item : diner.getMenuItems()) {
             if (item != null) {
                 printItem(item);
             }
-        }
-
-        System.out.println("\n--- PANCAKE HOUSE MENU ---");
-        for (MenuItem item : pancakeHouse.getMenuItems()) {
-            printItem(item);
         }
     }
 

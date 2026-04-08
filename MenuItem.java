@@ -1,4 +1,4 @@
-public class MenuItem {
+public class MenuItem extends MenuComponent{
     private String name;
     private String description;
     private boolean vegetarian;

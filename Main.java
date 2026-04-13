@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -26,10 +28,34 @@ public class Main {
         //     }
         // }
 
-        Menu DinerMenu = new Menu("Diner", "Diner Menu");
+        MenuComponent DinerMenu = new Menu("Diner", "Diner Menu");
         DinerMenu.add(new MenuItem("Vegetarian BLT", "Fakin' Bacon with lettuce & tomato", true, 2.99));
         DinerMenu.add(new MenuItem("BLT", "Bacon with lettuce & tomato", false, 2.99));
         DinerMenu.add(new MenuItem("Soup of the day", "Soup with a side of potato salad", false, 3.29));
+
+        MenuComponent AlternateDinerMenu = new Menu("Alternate Diner", "Alternate Diner Menu");
+        AlternateDinerMenu.add(new MenuItem("Vegetarian BLT", "Fakin' Bacon with lettuce & tomato", true, 2.99));
+        AlternateDinerMenu.add(new MenuItem("BLT", "Bacon with lettuce & tomato", false, 2.99));
+        AlternateDinerMenu.add(new MenuItem("Soup of the day", "Soup with a side of potato salad", false, 3.29));
+
+
+        MenuComponent CafeMenu = new Menu("Cafe", "Cafe Menu");
+        CafeMenu.add(new MenuItem("Veggie Burger and Fries", "Veggie Burger on a whole wheat bun, lettuce, tomato and fries", true, 3.99));
+        CafeMenu.add(new MenuItem("Soup of the day", "A cup of soup of the day with a side salad", false, 3.69));
+        CafeMenu.add(new MenuItem("Burrito", "A large burrito, with pinto beans, salsa, and guacamole.", true, 4.29));
+
+        MenuComponent PancakeMenu = new Menu("PancakeHouse", "Pancake House Menu");
+        PancakeMenu.add(new MenuItem("K&B's Pancake Breakfast", "Pancakes with scrambled eggs", true, 2.99));
+        PancakeMenu.add(new MenuItem("Regular Pancake Breakfast", "Pancakes with fried eggs", false, 2.99));
+        PancakeMenu.add(new MenuItem("Blueberry Pancakes", "Pancakes with fresh blueberries", true, 3.49));
+
+
+        MenuComponent combinedMenu = new Menu("Combined Menu", "Combined Menu of all Menu items");
+        combinedMenu.add(PancakeMenu);
+        combinedMenu.add(CafeMenu);
+        combinedMenu.add(DinerMenu);
+
+        combinedMenu.print();
 
         // System.out.println("--- Combined MENU ---");
         // while(menu.hasNext()){

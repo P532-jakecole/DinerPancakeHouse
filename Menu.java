@@ -10,6 +10,10 @@ public class Menu extends MenuComponent{
         this.description = description;
     }
 
+    public int totalComponents(){
+        return menuComponents.size();
+    }
+
 
     public void add(MenuComponent menuComponent){
         this.menuComponents.add(menuComponent);
@@ -33,7 +37,11 @@ public class Menu extends MenuComponent{
 
     public void print(){
        System.out.println("\n" + getName());
-       System.out.println(", " + getDescription());
+       System.out.println(getDescription());
        System.out.println("------------------------");
+
+       for (MenuComponent menuComponent : menuComponents) {
+            menuComponent.print(); // recursive call
+        }
     }
 }

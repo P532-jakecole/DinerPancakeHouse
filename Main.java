@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,10 +34,10 @@ public class Main {
         DinerMenu.add(new MenuItem("BLT", "Bacon with lettuce & tomato", false, 2.99));
         DinerMenu.add(new MenuItem("Soup of the day", "Soup with a side of potato salad", false, 3.29));
 
-        MenuComponent AlternateDinerMenu = new Menu("Alternate Diner", "Alternate Diner Menu");
-        AlternateDinerMenu.add(new MenuItem("Vegetarian BLT", "Fakin' Bacon with lettuce & tomato", true, 2.99));
-        AlternateDinerMenu.add(new MenuItem("BLT", "Bacon with lettuce & tomato", false, 2.99));
-        AlternateDinerMenu.add(new MenuItem("Soup of the day", "Soup with a side of potato salad", false, 3.29));
+        // MenuComponent AlternateDinerMenu = new Menu("Alternate Diner", "Alternate Diner Menu");
+        // AlternateDinerMenu.add(new MenuItem("Vegetarian BLT", "Fakin' Bacon with lettuce & tomato", true, 2.99));
+        // AlternateDinerMenu.add(new MenuItem("BLT", "Bacon with lettuce & tomato", false, 2.99));
+        // AlternateDinerMenu.add(new MenuItem("Soup of the day", "Soup with a side of potato salad", false, 3.29));
 
 
         MenuComponent CafeMenu = new Menu("Cafe", "Cafe Menu");
@@ -55,7 +56,10 @@ public class Main {
         combinedMenu.add(CafeMenu);
         combinedMenu.add(DinerMenu);
 
-        combinedMenu.print();
+        //combinedMenu.print();
+        //System.out.println("___________________________  Vegetarian Only Menu _____________________");
+        //printVegetarian(combinedMenu);
+        printVegetarianIterator(combinedMenu);
 
         // System.out.println("--- Combined MENU ---");
         // while(menu.hasNext()){
@@ -69,6 +73,37 @@ public class Main {
         //     MenuItem item = (MenuItem) altDiner.next();
         //     printItem(item);
         // }
+    }
+
+    public static void printVegetarian(MenuComponent menu){
+        if(menu instanceof Menu){
+            int size = ((Menu)menu).totalComponents();
+
+            System.out.println("\n" + menu.getName());
+            System.out.println(menu.getDescription());
+            System.out.println("------------------------");
+
+            for(int i = 0; i < size; i++){
+                printVegetarian(menu.getChild(i));
+            }
+        }else if(menu instanceof MenuItem){
+            if(menu.isVegetarian()){
+                menu.print();
+            }
+        }
+    }
+
+    public static void printVegetarianIterator(MenuComponent menu){
+        Iterator<MenuComponent> iterator = menu.createIterator();
+        System.out.println("Vegetarian Menu");
+        while(iterator.hasNext()){
+            MenuComponent component = iterator.next();
+            try{
+                if(component.isVegetarian()){
+                    component.print();
+                }
+            }catch(UnsupportedOperationException e){}
+        }
     }
 
     public static void printItem(MenuItem item) {

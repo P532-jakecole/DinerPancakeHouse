@@ -1,3 +1,4 @@
+import java.util.Iterator;
 public class MenuItem extends MenuComponent{
     private String name;
     private String description;
@@ -31,5 +32,9 @@ public class MenuItem extends MenuComponent{
         System.out.println(getName() + ", $" + getPrice() +
                 " -- " + getDescription() +
                 " (Veg: " + isVegetarian() + ")");
+    }
+
+    public Iterator<MenuComponent> createIterator(){
+        return new NullIterator();
     }
 } 

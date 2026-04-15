@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Menu extends MenuComponent{
     ArrayList<MenuComponent> menuComponents = new ArrayList<MenuComponent>();
     String name;
     String description;
+    Iterator<MenuComponent> iterator = null;
 
     public Menu(String name, String description){
         this.name  = name;
@@ -41,7 +43,14 @@ public class Menu extends MenuComponent{
        System.out.println("------------------------");
 
        for (MenuComponent menuComponent : menuComponents) {
-            menuComponent.print(); // recursive call
+            menuComponent.print();
         }
+    }
+
+    public Iterator<MenuComponent> createIterator(){
+        if(iterator == null){
+            iterator = new CompositeIterator(menuComponents.iterator());
+        }
+        return iterator;
     }
 }
